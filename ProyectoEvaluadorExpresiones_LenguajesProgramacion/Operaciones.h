@@ -16,6 +16,7 @@ public:
 	
 	//feature C++ V11 - Lambda Expresions
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones
 
 	//Suma de dos enteros
 	auto suma(int x, int y) {
@@ -61,6 +62,7 @@ public:
 
 	//feature C++ V11 - Lambda Expresions
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones
 	
 	//Resta de dos enteros
 	int resta(int x, int y) {
@@ -105,7 +107,8 @@ public:
 
 
 	//feature C++ V11 - Lambda Expresions
-	//feature C++ V11 - Autodeduccion de Tipos de Datos 
+	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones 
 	
 	//Multimplicacion de dos enteros
 	int multiplicacion(int x, int y) { 
@@ -149,7 +152,8 @@ public:
 
 
 	//feature C++ V11 - Lambda Expresions
-	//feature C++ V11 - Autodeduccion de Tipos de Datos 
+	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones 
 	
 	//Divicion de dos Enteros
 	int divicion(int x, int y) {
@@ -194,7 +198,8 @@ public:
 
 
 	//feature C++ V11 - Lambda Expresions
-	//feature C++ V11 - Autodeduccion de Tipos de Datos 
+	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones 
 	 
 	//Modulo de dos enteros
 	int mod(int x, int y) { 
@@ -212,7 +217,8 @@ public:
 
 
 	//feature C++ V11 - Lambda Expresions
-	//feature C++ V11 - Autodeduccion de Tipos de Datos 
+	//feature C++ V11 - Autodeduccion de Tipos de Datos
+	//feature C++ V14 - Autodeduccion de Tipos de Retorno de Funciones 
 	
 	//Exponente entero de un entero
 	int exp(int x, int y) { 
