@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
 #include <math.h>
 #include "constantes.h"
@@ -53,6 +54,27 @@ public:
 		Constantes aux(variable, valor);
 		file << aux;
 		file.close();
+	};
+
+	Constantes buscarConstante(string _nombreVariable) {
+		string file_name = "constantes.bin";
+		ifstream file(file_name, ios::in | ios::binary);
+
+		file.seekg(ios::beg);
+		Constantes aux;
+
+		while (!file.eof()) {
+			int posicion = -1;
+			posicion = file.tellg();
+
+			file >> aux;
+
+			if (aux.name.compare(_nombreVariable) == 0) {
+				file.seekg(posicion);
+				return aux;
+			}
+		}
+		return aux;
 	};
 
 
