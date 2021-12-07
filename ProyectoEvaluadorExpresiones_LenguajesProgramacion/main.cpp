@@ -6,13 +6,14 @@
 #include "constantes.h"
 #include "Operaciones.h"
 #include "VariableManager.h"
+#include "ConstantesManager.h"
 using namespace std;
 
 
 int main() {
 	//Prueba de Archivo de Constantes
-	crearArchivoConstantes();
-	vector<Constantes>* constantes = cargarArchivoConstantes();
+	ConstanteManager constantManager;
+	vector<Constantes>* constantes = constantManager.cargarArchivoConstantes();
 
 	if (constantes != nullptr) {
 		for (int i = 0; i < constantes->size(); i++)
