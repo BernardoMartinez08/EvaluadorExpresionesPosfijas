@@ -7,6 +7,8 @@
 #include "Operaciones.h"
 #include "VariableManager.h"
 #include "ConstantesManager.h"
+#include <any>
+
 using namespace std;
 
 
@@ -31,7 +33,7 @@ int main() {
 	st.push(1);
 	st.push(8);
 	st.push(10);
-	st.push(23);
+	st.push(33);
 	st.push(12);
 	st.push(13);
 	st.push(17);
@@ -69,5 +71,6 @@ int main() {
 	string a = "a";
 	variables.requestVariable(a);
 	cout << "el valor asignado a la variable fue: " << a;
+
 	_getch();
 }

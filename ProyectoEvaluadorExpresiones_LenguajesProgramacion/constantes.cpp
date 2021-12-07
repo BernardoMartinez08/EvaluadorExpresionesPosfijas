@@ -1,12 +1,5 @@
 #include "constantes.h"
 
-//Constructor sin parametros.
-Constantes::Constantes() {
-	name = "";
-	value = 0;
-}
-
-
 //Sobrecarga de operadores de escritura ostream
 ostream& operator<<(ostream& stream, const Constantes& data) {
 	stream

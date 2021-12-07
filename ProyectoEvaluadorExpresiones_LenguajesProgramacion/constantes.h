@@ -13,9 +13,10 @@ class Constantes {
 	friend ostream& operator<<(ostream&, const Constantes&);
 	friend istream& operator>>(istream&, Constantes&);
 public:
-	Constantes();
 	//feature C++ V11 - Incializacion de matriz de miembros
 	Constantes(string _name, float _value) : value(_value), name(_name) {};
+	//feature C++ V11 - Llamado a un constructor de la misma clase dentro de otro constructor
+	Constantes() : Constantes("", 0) {};
 
 	void print();
 
