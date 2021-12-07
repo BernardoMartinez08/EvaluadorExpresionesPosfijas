@@ -72,5 +72,9 @@ int main() {
 	variables.requestVariable(a);
 	cout << "el valor asignado a la variable fue: " << a;
 
+	/*auto x = std::any(11);
+	x = std::string("You are beautiful :)");
+	x = 12.0;*/
+
 	_getch();
 }
