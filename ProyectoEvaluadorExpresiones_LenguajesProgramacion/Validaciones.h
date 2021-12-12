@@ -1,6 +1,6 @@
 #pragma once
-#ifndef VALIDACIONES
-#define VALIDACIONES
+#ifndef VALIDACIONES_H
+#define VALIDACIONES_H
 
 #include <iostream>
 #include <string>
@@ -29,4 +29,4 @@ public:
 
 	bool denominadorCero(string, string);
 };
-#endif // !VALIDACIONES
+#endif // !VALIDACIONES_H

@@ -14,7 +14,7 @@ class VariableManager {
 public:
 	VariableManager() {};
 
-	void requestVariable(string &variable) {
+	void requestVariable(auto &variable) {
 		cout << "\nIngrese el valor para la variable [ " << variable << " ]: ";
 		variable = "";
 		cin >> variable;

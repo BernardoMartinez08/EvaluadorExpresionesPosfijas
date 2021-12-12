@@ -1,6 +1,6 @@
 #pragma once
-#ifndef CONSTANTE_MANAGER
-#define CONSTANTE_MANAGER
+#ifndef CONSTANTE_MANAGER_H
+#define CONSTANTE_MANAGER_H
 
 #include <iostream>
 #include <string>
@@ -19,4 +19,4 @@ public:
 	Constantes buscarConstante(string _nombreVariable);
 
 };
-#endif // !CONSTANTE_MANAGER
+#endif // !CONSTANTE_MANAGER_H

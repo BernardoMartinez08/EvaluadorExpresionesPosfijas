@@ -31,6 +31,7 @@
   <ItemGroup>
     <ClCompile Include="constantes.cpp" />
     <ClCompile Include="ConstantesManager.cpp" />
+    <ClCompile Include="Conversiones.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Validaciones.cpp" />
   </ItemGroup>

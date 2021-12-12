@@ -1,6 +1,6 @@
 #pragma once
-#ifndef INFIX_MANAGER
-#define INFIX_MANAGER
+#ifndef INFIX_MANAGER_H
+#define INFIX_MANAGER_H
 
 #include <iostream>
 #include <string>
@@ -25,4 +25,4 @@ private:
 	string rootExpresion = " ";
 	Stack<string>* infixExpresion = nullptr;
 };
-#endif // !INFIX_MANAGER
+#endif // !INFIX_MANAGER_H
