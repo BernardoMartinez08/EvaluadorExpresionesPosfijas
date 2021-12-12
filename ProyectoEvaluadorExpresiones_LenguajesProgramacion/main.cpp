@@ -8,6 +8,7 @@
 #include "VariableManager.h"
 #include "ConstantesManager.h"
 #include <any>
+#include "Validaciones.h"
 
 using namespace std;
 
@@ -72,9 +73,34 @@ int main() {
 	variables.requestVariable(a);
 	cout << "el valor asignado a la variable fue: " << a;
 
-	/*auto x = std::any(11);
-	x = std::string("You are beautiful :)");
-	x = 12.0;*/
+	auto x = std::any(1);
+	std::cout << "\n";
+    std::cout << x.type().name() << ": " << std::any_cast<int>(x) << '\n';
+    x = 3.14;
+    std::cout << x.type().name() << ": " << std::any_cast<double>(x) << '\n';
+    x = true;
+    std::cout << x.type().name() << ": " << std::any_cast<bool>(x) << '\n';
+	x = string("Hola Mundo");
+	std::cout << x.type().name() << ": " << std::any_cast<string>(x) << '\n';
 
+
+
+	Stack<string>* expresion = new Stack<string>;
+
+	expresion->push("10");
+	expresion->push("+");
+	expresion->push("45");
+	expresion->push("*");
+	expresion->push("a");
+	expresion->push("%");
+	expresion->push("pi");
+	expresion->push("/");
+	expresion->push("33.4");
+
+	expresion->print();
+
+	Validaciones validador;
+	validador.validarExpresion(expresion);
+ 
 	_getch();
 }
