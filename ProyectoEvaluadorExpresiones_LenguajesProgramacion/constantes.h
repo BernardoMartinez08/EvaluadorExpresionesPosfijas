@@ -9,7 +9,14 @@
 
 using namespace std;
 
+/*
+	Clase Constantes nos permite almacenar y leer datos del archivo de constantes
+	es posible traer las constantes y su valor del archivo, por tanto se puede
+	buscar en el archivo una constante
+*/
+
 class Constantes {
+	//Sobrecarga de Operadores de Escritura y Lectura
 	friend ostream& operator<<(ostream&, const Constantes&);
 	friend istream& operator>>(istream&, Constantes&);
 public:

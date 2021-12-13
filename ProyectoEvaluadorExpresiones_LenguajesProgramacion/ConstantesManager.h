@@ -11,6 +11,11 @@
 
 using namespace std;
 
+/*
+	Clase ConstanteManager nos permite cargar el archivo de Constantes y atraves
+	de la clase Constantes nos permite hacer la extraccion de los datos del 
+	archivo para su recorrido o cargar todo el archivo.
+*/
 class ConstanteManager {
 public:
 	ConstanteManager() {};

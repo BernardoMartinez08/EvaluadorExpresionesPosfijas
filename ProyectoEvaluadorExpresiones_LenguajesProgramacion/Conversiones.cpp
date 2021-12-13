@@ -43,7 +43,7 @@ auto Conversiones::toVariable(string valor) {
     auto _valor = 0;
 
     if (validador.esVariable(valor)) {
-        variablesManager.requestVariable(_valor);
+        //variablesManager.requestVariable(_valor);
     }
 
     return _valor;
