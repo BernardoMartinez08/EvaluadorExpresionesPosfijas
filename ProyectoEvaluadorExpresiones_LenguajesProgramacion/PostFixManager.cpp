@@ -54,11 +54,11 @@ void PostFixManager::convert() {
 			pila->push(this->infixExpresion->at(i));
 		}
 		//Si es un operador de mayor precedecia se agrega a la pila
-		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) > precedence(pila->peek())) {
+		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) < precedence(pila->peek())) {
 			pila->push(this->infixExpresion->at(i));
 		}
 		//Si es un operador de menor precedencia sacar el top de la pila y agregarlo a la expresion,ademas agregar operador a la pila
-		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) < precedence(pila->peek())) {
+		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) > precedence(pila->peek())) {
 			postfixExpresion->push_back(pila->peek());
 			pila->pop();
 			pila->push(this->infixExpresion->at(i));
