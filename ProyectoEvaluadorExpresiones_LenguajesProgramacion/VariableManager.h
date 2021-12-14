@@ -21,25 +21,7 @@ public:
 	VariableManager() {};
 
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
-	void requestVariable(auto &variable) {
-		bool esValida = false;
-		Validaciones validador;
-
-		while (esValida == false) {
-			cout << "\nIngrese el valor para la variable [ " << variable << " ]: ";
-			variable = "";
-			cin >> variable;
-
-			if (validador.esFloat(variable))
-				esValida = true;
-			else if (validador.esInt(variable))
-				esValida = true;
-			else if (validador.esConstante(variable))
-				esValida = true;
-			else
-				esValida = false;
-		}
-	};
+	void requestVariable(string& variable);
 
 
 };

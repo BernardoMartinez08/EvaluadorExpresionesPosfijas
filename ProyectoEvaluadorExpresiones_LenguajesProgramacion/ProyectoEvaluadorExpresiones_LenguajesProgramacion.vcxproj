@@ -24,6 +24,7 @@
     <ClInclude Include="Conversiones.h" />
     <ClInclude Include="InfixManager.h" />
     <ClInclude Include="Operaciones.h" />
+    <ClInclude Include="PostFixManager.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Validaciones.h" />
     <ClInclude Include="VariableManager.h" />
@@ -34,7 +35,9 @@
     <ClCompile Include="Conversiones.cpp" />
     <ClCompile Include="InfixManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PostFixManager.cpp" />
     <ClCompile Include="Validaciones.cpp" />
+    <ClCompile Include="VariableManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

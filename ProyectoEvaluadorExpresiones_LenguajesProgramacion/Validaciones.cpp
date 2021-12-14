@@ -5,40 +5,62 @@ Validaciones::Validaciones() {
 }
 
 bool Validaciones::validarExpresion(vector<string>* expresion) {
-    if (expresion->empty()) {
+    //Feature de C++ V17 Inicializadores dento de sentencias if
+    if (bool _vacio = expresion->empty(); _vacio == true) {
         cout << "\nExpresion Vacia!!!*\n";
         return false;
     }
 
     bool esValid = false;
 
-    if (esSimbolo(expresion->at(0))) {
+    //Feature de C++ V17 Inicializadores dento de sentencias if
+    if (bool _valid = esSimbolo(expresion->at(0)); _valid == true) {
         cout << "\nExpresion No puede comenzar con un simbolo!!!*\n";
         return false;
-    }else if (esSimbolo(expresion->at(expresion->size()-1))) {
+    }
+    //Feature de C++ V17 Inicializadores dento de sentencias if
+    else if (bool _valid = esSimbolo(expresion->at(expresion->size() - 1)); _valid == true) {
         cout << "\nExpresion No puede Finalizar con un simbolo!!!*\n";
         return false;
     }
 
     for (int i = 0; i < expresion->size(); i++) {
-        if (esFloat(expresion->at(i))) {
+        //Feature de C++ V17 Inicializadores dento de sentencias if
+        if (bool _valid = esFloat(expresion->at(i)); _valid == true) {
             cout << "\nEs Float*\n";
             esValid = true;
         }
-        else if (esInt(expresion->at(i))) {
+        //Feature de C++ V17 Inicializadores dento de sentencias if
+        else if (bool _valid = esInt(expresion->at(i)); _valid == true) {
             cout << "\nEs Entero*\n";
             esValid = true;
         }
-        else if (esSimbolo(expresion->at(i))){
+        //Feature de C++ V17 Inicializadores dento de sentencias if
+        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true) {
             cout << "\nEs Simbolo*\n";
             esValid = false;
         }
-        else if (esVariable(expresion->at(i))) {
+        //Feature de C++ V17 Inicializadores dento de sentencias if
+        else if (bool _valid = esVariable(expresion->at(i)); _valid == true) {
             cout << "\nEs Variable*\n";
+            VariableManager manager;
+            manager.requestVariable(expresion->at(i));
             esValid = true;
         }
-        else if (esConstante(expresion->at(i))) {
+        //Feature de C++ V17 Inicializadores dento de sentencias if
+        else if (bool _valid = esConstante(expresion->at(i)); _valid == true) {
             cout << "\nEs Constante*\n";
+
+            ConstanteManager buscador;
+            Constantes constAux = buscador.buscarConstante(expresion->at(i));
+
+            if (constAux.name == "" && constAux.value == 0) {
+                expresion->at(i) = "0";
+            }
+            else {
+                expresion->at(i) = to_string(constAux.value);
+            }
+
             esValid = true;
         }
         else if (esParentisisIzq(expresion->at(i)) && esValid == true) {

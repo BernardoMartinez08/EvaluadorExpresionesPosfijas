@@ -8,6 +8,7 @@
 #include <vector>
 #include <math.h>
 #include "Stack.h"
+#include "VariableManager.h"
 #include "ConstantesManager.h"
 
 using namespace std;

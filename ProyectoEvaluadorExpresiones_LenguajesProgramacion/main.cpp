@@ -111,7 +111,7 @@ int main() {
 	else
 		cout << "\nLa Expresion NO es Valida.\n";*/
 
-	string expresion = "23+783/773*63+pi";
+	string expresion = "23+783/773*63+pi+a";
 	string expresion2 = "23+783/773*63+";
 	string expresion3 = "+783/773*63+pi";
 
@@ -144,14 +144,14 @@ int main() {
 		cout << "\nLa Expresion 1 NO es Valida.\n";
 
 	if (InfiExpresion2.isValid())
-		cout << "\nLa Expresion 1 SI es Valida.\n";
+		cout << "\nLa Expresion 2 SI es Valida.\n";
 	else
-		cout << "\nLa Expresion 1 NO es Valida.\n";
+		cout << "\nLa Expresion 2 NO es Valida.\n";
 
 	if (InfiExpresion3.isValid())
-		cout << "\nLa Expresion 1 SI es Valida.\n";
+		cout << "\nLa Expresion 3 SI es Valida.\n";
 	else
-		cout << "\nLa Expresion 1 NO es Valida.\n";
+		cout << "\nLa Expresion 3 NO es Valida.\n";
 
  
 	_getch();
