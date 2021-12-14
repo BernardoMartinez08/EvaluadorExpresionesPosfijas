@@ -160,7 +160,7 @@ int main() {
 	vector<string>* postFix1 = post1.getPostfixExpresion();
 
 	for (int i = 0; i < postFix1->size(); i++) {
-		cout << postFix1->at(i);
+		cout << "[ " << postFix1->at(i) << " ] ";
 	}
 
 	_getch();
