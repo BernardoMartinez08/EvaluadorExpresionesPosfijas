@@ -20,16 +20,23 @@ void PostFixManager::convert() {
 		else if (validador.esSimbolo(this->infixExpresion->at(i)) && pila->isEmpty()) {
 			pila->push(this->infixExpresion->at(i));
 		}
+		else if (validador.esSimbolo(this->infixExpresion->at(i)) && validador.esParentisisIzq(pila->peek())) {
+			pila->push(this->infixExpresion->at(i));
+		}
 		else if (validador.esParentisisIzq(this->infixExpresion->at(i))) {
 			pila->push(this->infixExpresion->at(i));
 		}
-		else if (validador.esParentisisDer(this->infixExpresion->at(i))) {
+		else if (validador.esParentisisDer(this->infixExpresion->at(i)) && !pila->isEmpty()) {
 			StackNode<string>* actual = pila->top;
 
-			while (actual != nullptr && validador.esParentisisIzq(actual->data)) {
-				this->postfixExpresion->push_back(actual->data);
-				pila->pop();
-				actual = actual->next;
+			while (actual != nullptr) {
+				if (validador.esParentisisIzq(actual->data) == false) {
+					this->postfixExpresion->push_back(actual->data);
+					pila->pop();
+					actual = actual->next;
+				}
+				else
+					continue;
 			}
 		}
 		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) == precedence(pila->peek())) {
@@ -42,7 +49,9 @@ void PostFixManager::convert() {
 		}
 		else if (validador.esSimbolo(this->infixExpresion->at(i)) && precedence(this->infixExpresion->at(i)) < precedence(pila->peek())) {
 			postfixExpresion->push_back(pila->peek());
+			pila->print();
 			pila->pop();
+			pila->print();
 			pila->push(this->infixExpresion->at(i));
 		}
 	}

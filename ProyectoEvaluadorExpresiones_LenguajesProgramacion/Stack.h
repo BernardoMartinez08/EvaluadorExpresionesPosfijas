@@ -69,7 +69,7 @@ void Stack<T>::print() {
 	cout << "Cantidad de elementos: " << size() << " \n\n";
 
 	while (actual != nullptr) {
-		cout << "[ " << actual->data << "]\n";
+		cout << "[ " << actual->data << " ]\n";
 		actual = actual->next;
 	}
 
@@ -88,9 +88,10 @@ void Stack<T>::pop() {
 
 	StackNode<T>* aux = top;
 	top = top->next;
-	//Feature de C++ V11 - Designacion de constante a puntero nulo
-	top->previous = nullptr;
-
+	if (top != nullptr) {
+		//Feature de C++ V11 - Designacion de constante a puntero nulo
+		top->previous = nullptr;
+	}
 }
 
 template <typename T>

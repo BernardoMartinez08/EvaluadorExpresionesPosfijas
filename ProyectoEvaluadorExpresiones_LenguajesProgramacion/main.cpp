@@ -10,6 +10,7 @@
 #include <any>
 #include "Validaciones.h"
 #include "InfixManager.h"
+#include "PostFixManager.h"
 
 using namespace std;
 
@@ -111,7 +112,8 @@ int main() {
 	else
 		cout << "\nLa Expresion NO es Valida.\n";*/
 
-	string expresion = "23+783/773*63+pi+a";
+	//string expresion = "23+783/773*63+pi+a";
+	string expresion = "10+(1+2)*2";
 	string expresion2 = "23+783/773*63+";
 	string expresion3 = "+783/773*63+pi";
 
@@ -154,5 +156,12 @@ int main() {
 		cout << "\nLa Expresion 3 NO es Valida.\n";
 
  
+	PostFixManager post1(InfiExpresion.getInfixExpresion());
+	vector<string>* postFix1 = post1.getPostfixExpresion();
+
+	for (int i = 0; i < postFix1->size(); i++) {
+		cout << postFix1->at(i);
+	}
+
 	_getch();
 }
