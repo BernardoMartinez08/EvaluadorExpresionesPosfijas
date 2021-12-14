@@ -32,7 +32,6 @@ public:
 
 	void print();
 
-private:
 	//Feature de C++ V11 - Designacion de constante a puntero nulo
 	StackNode<T>* top = nullptr;
 };
@@ -109,5 +108,4 @@ int Stack<T>::size() {
 
 	return cantidad;
 }
-
 #endif
