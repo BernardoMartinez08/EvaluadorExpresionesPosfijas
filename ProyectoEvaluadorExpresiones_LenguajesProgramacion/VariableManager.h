@@ -20,7 +20,6 @@ class VariableManager {
 public:
 	VariableManager() {};
 
-	//feature C++ V11 - Autodeduccion de Tipos de Datos
 	void requestVariable(string& variable);
 
 

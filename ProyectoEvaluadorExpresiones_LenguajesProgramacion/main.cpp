@@ -56,7 +56,7 @@ int main() {
 	st2.push("Bernardo");
 
 	st2.print();
-	cout << "\nTope de la Fila: " << st.peek() << "\n";
+	cout << "\nTope de la Fila: " << st.peek() << "\n";*/
 
 
 	//Prueba de Operaciones
@@ -68,7 +68,7 @@ int main() {
 	cout << "\nLa suma es: " << suma2;
 
 
-
+	/*
 	//Prueba de Variables
 	VariableManager variables;
 	string a = "a";
