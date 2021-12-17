@@ -15,7 +15,7 @@ void PostFixManager::convert() {
 
 	for (int i = 0; i < this->infixExpresion->size(); i++) {
 		//Si es un numero agregar a la expresion		
-		if (validador.esFloat(this->infixExpresion->at(i)) || validador.esInt(this->infixExpresion->at(i))) {
+		if (validador.esFloat(this->infixExpresion->at(i)) || validador.esInt(this->infixExpresion->at(i)) && this->infixExpresion->at(i) != "-") {
 			postfixExpresion->push_back(this->infixExpresion->at(i));
 		}
 		//Si es un operador y pila esta vacia, agregar operador a la pila
@@ -95,7 +95,7 @@ void PostFixManager::evaluate() {
 	Stack<string>* pila = new Stack<string>;
 
 	for (int i = 0; i < this->postfixExpresion->size(); i++) {
-		if (validador.esFloat(this->postfixExpresion->at(i)) || validador.esInt(this->postfixExpresion->at(i))) {
+		if (validador.esFloat(this->postfixExpresion->at(i)) || validador.esInt(this->postfixExpresion->at(i)) && this->postfixExpresion->at(i) != "-") {
 			pila->push(this->postfixExpresion->at(i));
 		}
 		
@@ -151,7 +151,7 @@ float PostFixManager::operate(auto operando1, auto operando2, string operador) {
 		return  operaciones.suma(operando1, operando2);
 	}
 	else if (operador[0] == '-') {
-		return  operaciones.resta(operando1, operando2);
+		return  operaciones.resta(operando2, operando1);
 	}
 	else if (operador[0] == '*') {
 		return  operaciones.multiplicacion(operando1, operando2);

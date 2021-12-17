@@ -156,7 +156,7 @@ bool Validaciones::esSimbolo(string valor) {
         valor.erase(valor.begin());
     }
 
-    int ini = valor[0] == '-';
+    int ini = 0;
 
     for (int i = ini; i < valor.size(); i++) {
         if (valor[i] == '*' || valor[i] == '/' || valor[i] == '%' || valor[i] == '^' || valor[i] == '-' || valor[i] == '+' || valor[i] == '(' || valor[i] == ')') {
