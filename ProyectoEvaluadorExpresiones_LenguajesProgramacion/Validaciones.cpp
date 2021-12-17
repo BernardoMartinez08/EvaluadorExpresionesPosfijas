@@ -27,30 +27,24 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
     for (int i = 0; i < expresion->size(); i++) {
         //Feature de C++ V17 Inicializadores dento de sentencias if
         if (bool _valid = esFloat(expresion->at(i)); _valid == true) {
-            cout << "\nEs Float*\n";
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esInt(expresion->at(i)); _valid == true) {
-            cout << "\nEs Entero*\n";
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true) {
-            cout << "\nEs Simbolo*\n";
             esValid = false;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esVariable(expresion->at(i)); _valid == true) {
-            cout << "\nEs Variable*\n";
             VariableManager manager;
             manager.requestVariable(expresion->at(i));
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esConstante(expresion->at(i)); _valid == true) {
-            cout << "\nEs Constante*\n";
-
             ConstanteManager buscador;
             Constantes constAux = buscador.buscarConstante(expresion->at(i));
 
@@ -64,11 +58,9 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
             esValid = true;
         }
         else if (esParentisisIzq(expresion->at(i)) && esValid == true) {
-            cout << "\nEs Parentesis Izquiedo*\n";
             esValid = false;
         }
         else if (esParentisisDer(expresion->at(i)) && esValid == false) {
-            cout << "\nEs Parentesis Izquiedo*\n";
             esValid = true;
         }
         else

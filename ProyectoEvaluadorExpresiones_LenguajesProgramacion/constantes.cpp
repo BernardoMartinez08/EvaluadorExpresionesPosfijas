@@ -27,5 +27,5 @@ istream& operator>>(istream& stream, Constantes& data) {
 
 
 void Constantes::print() {
-	cout << "Constante: " << this->name << " = " << this->value << "\n";
+	cout << "\nConstante: " << this->name << " = " << this->value << "\n";
 }

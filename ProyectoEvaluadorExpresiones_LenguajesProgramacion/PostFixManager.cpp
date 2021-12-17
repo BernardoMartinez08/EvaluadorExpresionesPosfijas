@@ -95,14 +95,11 @@ void PostFixManager::evaluate() {
 	Stack<string>* pila = new Stack<string>;
 
 	for (int i = 0; i < this->postfixExpresion->size(); i++) {
-		pila->print();
-
 		if (validador.esFloat(this->postfixExpresion->at(i)) || validador.esInt(this->postfixExpresion->at(i))) {
 			pila->push(this->postfixExpresion->at(i));
 		}
 		
 		else if (validador.esSimbolo(this->postfixExpresion->at(i))) {
-			pila->print();
 			string operando1 = pila->peek();
 			pila->pop();
 			string operando2 = pila->peek();
@@ -146,22 +143,22 @@ void PostFixManager::evaluate() {
 }
 
 
-float PostFixManager::operate(auto operador1, auto operador2, string operador) {
+float PostFixManager::operate(auto operando1, auto operando2, string operador) {
 	Operaciones operaciones;
 	Validaciones validador;
 
 	if (operador[0] == '+') {
-		return  operaciones.suma(operador1, operador2);
+		return  operaciones.suma(operando1, operando2);
 	}
 	else if (operador[0] == '-') {
-		return  operaciones.resta(operador1, operador2);
+		return  operaciones.resta(operando1, operando2);
 	}
 	else if (operador[0] == '*') {
-		return  operaciones.multiplicacion(operador1, operador2);
+		return  operaciones.multiplicacion(operando1, operando2);
 	}
 	else if (operador[0] == '/') {
-		if (operador2 != 0) {
-			return  operaciones.divicion(operador2, operador1);
+		if (operando1 != 0) {
+			return  operaciones.divicion(operando2, operando1);
 		}
 		else {
 			cout << "\nPara operaracion divicion el denominador no puede ser 0!!";
@@ -169,11 +166,16 @@ float PostFixManager::operate(auto operador1, auto operador2, string operador) {
 		}
 	}
 	else if (operador[0] == '^') {
-		return  operaciones.exp(operador1, operador2);
+		return  operaciones.exp(operando2, operando1);
 	}
 	else if (operador[0] == '%') {
-		if(validador.esInt(to_string(operador1)) && validador.esInt(to_string(operador1)))
-			return  operaciones.mod(operador1, operador2);
+		if(validador.esInt(to_string(operando1)) && validador.esInt(to_string(operando2)))
+			if (operando1 != 0)
+				return  operaciones.mod(operando2, operando1);
+			else {
+				cout << "\nPara operaracion modulo el segundo componente no puede ser 0!!";
+				return 0;
+			}
 		else {
 			cout << "\nOperacion modulo no acepta valores de tipo flotante!!";
 			return 0;
