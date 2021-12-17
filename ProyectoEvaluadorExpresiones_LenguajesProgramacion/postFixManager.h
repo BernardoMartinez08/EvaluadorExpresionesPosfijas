@@ -9,6 +9,8 @@
 #include <math.h>
 #include "Stack.h"
 #include "Validaciones.h"
+#include "Conversiones.h"
+#include "Operaciones.h"
 
 using namespace std;
 /*
@@ -33,5 +35,6 @@ private:
 	void convert();
 	int precedence(string);
 	void evaluate();
+	float operate(auto operando1, auto operando2, string operador);
 };
 #endif // !POSTFIX_MANAGER_H

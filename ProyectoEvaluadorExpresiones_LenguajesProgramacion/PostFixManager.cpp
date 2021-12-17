@@ -14,7 +14,6 @@ void PostFixManager::convert() {
 	Stack<string>* pila = new Stack<string>;
 
 	for (int i = 0; i < this->infixExpresion->size(); i++) {
-		pila->print();
 		//Si es un numero agregar a la expresion		
 		if (validador.esFloat(this->infixExpresion->at(i)) || validador.esInt(this->infixExpresion->at(i))) {
 			postfixExpresion->push_back(this->infixExpresion->at(i));
@@ -65,7 +64,6 @@ void PostFixManager::convert() {
 		}
 
 		if (i == (this->infixExpresion->size() - 1)) {
-			pila->print();
 			StackNode<string>* actual = pila->top;
 
 			while (actual != nullptr) {
@@ -91,7 +89,99 @@ int PostFixManager::precedence(string operador) {
 
 
 void PostFixManager::evaluate() {
+	Validaciones validador;
+	Conversiones convertidor;
 
+	Stack<string>* pila = new Stack<string>;
+
+	for (int i = 0; i < this->postfixExpresion->size(); i++) {
+		pila->print();
+
+		if (validador.esFloat(this->postfixExpresion->at(i)) || validador.esInt(this->postfixExpresion->at(i))) {
+			pila->push(this->postfixExpresion->at(i));
+		}
+		
+		else if (validador.esSimbolo(this->postfixExpresion->at(i))) {
+			pila->print();
+			string operando1 = pila->peek();
+			pila->pop();
+			string operando2 = pila->peek();
+			pila->pop();
+
+			if (validador.esFloat(operando1) && validador.esFloat(operando2)) {
+				float operando1_converted = convertidor.toFloat(operando1);
+				float operando2_converted = convertidor.toFloat(operando2);
+				
+				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
+				pila->push(to_string(resultado));
+			}
+			else if (validador.esFloat(operando1) && validador.esInt(operando2)) {
+				float operando1_converted = convertidor.toFloat(operando1);
+				float operando2_converted = convertidor.toInt(operando2);
+
+				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
+				pila->push(to_string(resultado));
+			}
+			else if (validador.esInt(operando1) && validador.esFloat(operando2)) {
+				float operando1_converted = convertidor.toInt(operando1);
+				float operando2_converted = convertidor.toFloat(operando2);
+
+				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
+				pila->push(to_string(resultado));
+			}
+			else if (validador.esInt(operando1) && validador.esInt(operando2)) {
+				float operando1_converted = convertidor.toInt(operando1);
+				float operando2_converted = convertidor.toInt(operando2);
+
+				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
+				pila->push(to_string(resultado));
+			}
+		}
+	}
+
+	if (!pila->isEmpty())
+		this->result = pila->peek();
+	else
+		this->result = "0";
+}
+
+
+float PostFixManager::operate(auto operador1, auto operador2, string operador) {
+	Operaciones operaciones;
+	Validaciones validador;
+
+	if (operador[0] == '+') {
+		return  operaciones.suma(operador1, operador2);
+	}
+	else if (operador[0] == '-') {
+		return  operaciones.resta(operador1, operador2);
+	}
+	else if (operador[0] == '*') {
+		return  operaciones.multiplicacion(operador1, operador2);
+	}
+	else if (operador[0] == '/') {
+		if (operador2 != 0) {
+			return  operaciones.divicion(operador2, operador1);
+		}
+		else {
+			cout << "\nPara operaracion divicion el denominador no puede ser 0!!";
+			return 0;
+		}
+	}
+	else if (operador[0] == '^') {
+		return  operaciones.exp(operador1, operador2);
+	}
+	else if (operador[0] == '%') {
+		if(validador.esInt(to_string(operador1)) && validador.esInt(to_string(operador1)))
+			return  operaciones.mod(operador1, operador2);
+		else {
+			cout << "\nOperacion modulo no acepta valores de tipo flotante!!";
+			return 0;
+		}
+	}
+	else{
+		return 0;
+	}
 }
 
 

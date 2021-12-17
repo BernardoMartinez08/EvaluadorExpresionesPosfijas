@@ -56,7 +56,7 @@ int main() {
 	st2.push("Bernardo");
 
 	st2.print();
-	cout << "\nTope de la Fila: " << st.peek() << "\n";*/
+	cout << "\nTope de la Fila: " << st.peek() << "\n";
 
 
 	//Prueba de Operaciones
@@ -68,7 +68,7 @@ int main() {
 	cout << "\nLa suma es: " << suma2;
 
 
-	/*
+	
 	//Prueba de Variables
 	VariableManager variables;
 	string a = "a";
@@ -113,14 +113,9 @@ int main() {
 		cout << "\nLa Expresion NO es Valida.\n";*/
 
 	//string expresion = "23+783/773*63+pi+a";
-	string expresion = "10+(1+2)*2";
+	string expresion = "20+5*5/4";
 	string expresion2 = "23+783/773*63+";
 	string expresion3 = "+783/773*63+pi";
-
-	auto toString = [](char a) {
-		string s(1, a);
-		return s;
-	};
 
 
 	InfixManager InfiExpresion(expresion);
@@ -162,6 +157,8 @@ int main() {
 	for (int i = 0; i < postFix1->size(); i++) {
 		cout << "[ " << postFix1->at(i) << " ] ";
 	}
+
+	cout << "\n\nEl resultado de la expresion: " << expresion << " es igual a: " << post1.getResult();
 
 	_getch();
 }
