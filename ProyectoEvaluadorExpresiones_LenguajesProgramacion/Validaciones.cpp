@@ -15,12 +15,18 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
 
     //Feature de C++ V17 Inicializadores dento de sentencias if
     if (bool _valid = esSimbolo(expresion->at(0)); _valid == true) {
-        cout << "\nExpresion No puede comenzar con un simbolo!!!*\n";
+        if (!esParentisisDer(expresion->at(0))) {
+            cout << "\nExpresion No puede comenzar con un simbolo!!!";
+                return false;
+        }
         return false;
     }
     //Feature de C++ V17 Inicializadores dento de sentencias if
     else if (bool _valid = esSimbolo(expresion->at(expresion->size() - 1)); _valid == true) {
-        cout << "\nExpresion No puede Finalizar con un simbolo!!!*\n";
+        if (!esParentisisIzq(expresion->at(expresion->size() - 1))) {
+            cout << "\nExpresion No puede Finalizar con un simbolo!!!";
+            return false;
+        }
         return false;
     }
 
@@ -63,8 +69,10 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
         else if (esParentisisDer(expresion->at(i)) && esValid == false) {
             esValid = true;
         }
-        else
+        else {
+            cout << "\nExpresion contiene el formato de parentesis incorrecto!!!*\n";
             esValid = false;
+        }
     }
 
     return esValid;
