@@ -11,23 +11,22 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
         return false;
     }
 
-    bool esValid = false;
+    bool esValid = true;
+    bool parentesisAbierto = false;
 
     //Feature de C++ V17 Inicializadores dento de sentencias if
     if (bool _valid = esSimbolo(expresion->at(0)); _valid == true) {
-        if (!esParentisisDer(expresion->at(0))) {
+        if (!esParentisisIzq(expresion->at(0))) {
             cout << "\nExpresion No puede comenzar con un simbolo!!!";
                 return false;
         }
-        return false;
     }
     //Feature de C++ V17 Inicializadores dento de sentencias if
     else if (bool _valid = esSimbolo(expresion->at(expresion->size() - 1)); _valid == true) {
-        if (!esParentisisIzq(expresion->at(expresion->size() - 1))) {
+        if (!esParentisisDer(expresion->at(expresion->size() - 1))) {
             cout << "\nExpresion No puede Finalizar con un simbolo!!!";
             return false;
         }
-        return false;
     }
 
     for (int i = 0; i < expresion->size(); i++) {
@@ -40,7 +39,7 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
-        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true) {
+        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true && !esParentisisIzq(expresion->at(0)) && !esParentisisIzq(expresion->at(0))) {
             esValid = false;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
@@ -63,10 +62,12 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
 
             esValid = true;
         }
-        else if (esParentisisIzq(expresion->at(i)) && esValid == true) {
+        else if (esParentisisIzq(expresion->at(i)) && parentesisAbierto == false) {
             esValid = false;
+            parentesisAbierto = true;
         }
-        else if (esParentisisDer(expresion->at(i)) && esValid == false) {
+        else if (esParentisisDer(expresion->at(i)) && parentesisAbierto == true) {
+            parentesisAbierto = false;
             esValid = true;
         }
         else {
