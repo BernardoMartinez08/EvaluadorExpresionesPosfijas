@@ -39,8 +39,16 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
-        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true && !esParentisisIzq(expresion->at(0)) && !esParentisisIzq(expresion->at(0))) {
+        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true && !esParentisisIzq(expresion->at(0))) {
             esValid = false;
+        }
+        else if (esParentisisIzq(expresion->at(i)) && parentesisAbierto == false) {
+            esValid = false;
+            parentesisAbierto = true;
+        }
+        else if (esParentisisDer(expresion->at(i)) && parentesisAbierto == true) {
+            parentesisAbierto = false;
+            esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esVariable(expresion->at(i)); _valid == true) {
@@ -59,15 +67,7 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
             else {
                 expresion->at(i) = to_string(constAux.value);
             }
-
-            esValid = true;
-        }
-        else if (esParentisisIzq(expresion->at(i)) && parentesisAbierto == false) {
-            esValid = false;
-            parentesisAbierto = true;
-        }
-        else if (esParentisisDer(expresion->at(i)) && parentesisAbierto == true) {
-            parentesisAbierto = false;
+            cout << "aqui";
             esValid = true;
         }
         else {
@@ -76,7 +76,10 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
         }
     }
 
-    return esValid;
+    if (parentesisAbierto != true)
+        return esValid;
+    else 
+        return false;
 }
 
 bool Validaciones::esFloat(string valor) {

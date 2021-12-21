@@ -100,8 +100,8 @@ int main() {
 			pruebas tester;
 			string expresiones[10][2];
 
-			expresiones[0][0] = "2+4*(pi+5)";
-			expresiones[0][1] = "34.56637";
+			expresiones[0][0] = "2+4*pi+5";
+			expresiones[0][1] = "19.566399";
 
 			expresiones[1][0] = "10+(1+2)*2";
 			expresiones[1][1] = "16";
@@ -124,7 +124,7 @@ int main() {
 			expresiones[7][0] = "56-8*(10-4)/";
 			expresiones[7][1] = "0";
 
-			expresiones[8][0] = "13+873/";
+			expresiones[8][0] = "(13+873";
 			expresiones[8][1] = "0";
 
 			expresiones[9][0] = "332+89)";

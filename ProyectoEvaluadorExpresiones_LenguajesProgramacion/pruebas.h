@@ -23,7 +23,6 @@ public:
 			PostFixManager PostfixExpresion(InfixExpresion.getInfixExpresion());
 
 			string resultado = PostfixExpresion.getResult();
-
 			if (resultado.compare(resultado_esperado)) {
 				return true;
 			}
