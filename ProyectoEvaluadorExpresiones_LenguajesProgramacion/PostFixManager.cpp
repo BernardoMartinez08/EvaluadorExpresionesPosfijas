@@ -114,21 +114,21 @@ void PostFixManager::evaluate() {
 			}
 			else if (validador.esFloat(operando1) && validador.esInt(operando2)) {
 				float operando1_converted = convertidor.toFloat(operando1);
-				float operando2_converted = convertidor.toInt(operando2);
+				int operando2_converted = convertidor.toInt(operando2);
 
 				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
 				pila->push(to_string(resultado));
 			}
 			else if (validador.esInt(operando1) && validador.esFloat(operando2)) {
-				float operando1_converted = convertidor.toInt(operando1);
+				int operando1_converted = convertidor.toInt(operando1);
 				float operando2_converted = convertidor.toFloat(operando2);
 
 				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
 				pila->push(to_string(resultado));
 			}
 			else if (validador.esInt(operando1) && validador.esInt(operando2)) {
-				float operando1_converted = convertidor.toInt(operando1);
-				float operando2_converted = convertidor.toInt(operando2);
+				int operando1_converted = convertidor.toInt(operando1);
+				int operando2_converted = convertidor.toInt(operando2);
 
 				float resultado = operate(operando1_converted, operando2_converted, postfixExpresion->at(i));
 				pila->push(to_string(resultado));
@@ -146,6 +146,7 @@ void PostFixManager::evaluate() {
 float PostFixManager::operate(auto operando1, auto operando2, string operador) {
 	Operaciones operaciones;
 	Validaciones validador;
+	Conversiones conversor;
 
 	if (operador[0] == '+') {
 		return  operaciones.suma(operando1, operando2);
@@ -169,14 +170,24 @@ float PostFixManager::operate(auto operando1, auto operando2, string operador) {
 		return  operaciones.exp(operando2, operando1);
 	}
 	else if (operador[0] == '%') {
-		if(validador.esInt(to_string(operando1)) && validador.esInt(to_string(operando2)))
-			if (operando1 != 0)
-				return  operaciones.mod(operando2, operando1);
+		if (validador.esInt(to_string(operando1)) && validador.esInt(to_string(operando2))) {
+			if (operando1 != 0) {
+				return operaciones.mod(operando2, operando1);
+			}
 			else {
 				cout << "\nPara operaracion modulo el segundo componente no puede ser 0!!";
 				return 0;
 			}
+		}
 		else {
+			if (operando1 != 0){
+				return operaciones.modf(operando2, operando1);
+			}
+			else {
+				cout << "\nPara operaracion modulo el segundo componente no puede ser 0!!";
+				return 0;
+			}
+
 			cout << "\nOperacion modulo no acepta valores de tipo flotante!!";
 			return 0;
 		}

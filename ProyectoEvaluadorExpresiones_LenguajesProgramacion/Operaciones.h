@@ -161,7 +161,10 @@ public:
 
 		return  modulo(x, y);
 	};
-	
+
+	auto modf(float x, float y) {
+		return  fmod(x, y);
+	};
 
 
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
