@@ -1,158 +1,154 @@
 #include <conio.h>
 #include <iostream>
-#include "Stack.h"
 #include <string>
-#include <fstream>
-#include "constantes.h"
-#include "Operaciones.h"
-#include "VariableManager.h"
-#include "ConstantesManager.h"
-#include <any>
-#include "Validaciones.h"
 #include "InfixManager.h"
+#include "PostFixManager.h"
+#include "ConstantesManager.h"
+#include "constantes.h"
+#include "pruebas.h"
 
 using namespace std;
 
 
 int main() {
-	//Prueba de Archivo de Constantes
-	/*ConstanteManager constantManager;
-	vector<Constantes>* constantes = constantManager.cargarArchivoConstantes();
+	int opcion = 0;
+	vector<string> historial;
 
-	if (constantes != nullptr) {
-		for (int i = 0; i < constantes->size(); i++)
-			constantes->at(i).print();
+	while (opcion != 6) {
+		cout << "\n\n\n********* E V A L U A D O R  D E  E X P R E S I O N E S *********\n\n";
+
+		cout << "1.Agregar Constantes.\n2.Ver todas las Constantes.\n3.Evaluar una Expresion.\n4.Historial de Evaluaciones.\n5.Ejecutar Pruebas de Validacion.\n6.Salir\n ";
+		cout << "Ingrese una opcion:";
+		cin >> opcion;
+
+		cout << "\n";
+
+		switch (opcion)
+		{
+		case 1: {
+			cout << "\n\n********* A G R E G A R  C O N S T A N T E S *********\n";
+			ConstanteManager constantes_manager;
+			constantes_manager.agregarConstante();
+
+			break;
+
+		}case 2: {
+			cout << "\n\n********* L I S T A D O  D E  C O N S T A N T E S *********\n";
+			ConstanteManager constantes_manager;
+			vector<Constantes>* constantes = constantes_manager.cargarArchivoConstantes();
+
+			for (int i = 0; i < constantes->size(); i++) {
+				constantes->at(i).print();
+			}
+
+			break;
+
+		}case 3: {
+			cout << "\n\n********* E V A L U A  E X P R E S I O N E S *********\n";
+			string expresion;
+			cout << "\nIngrese una Expresion en formato infijo: ";
+			cin >> expresion;
+
+			InfixManager InfiExpresion(expresion);
+
+			cout << "\n\nProcesando Expresion Ingresada........\n\n\nExpresion en formato Infijo:\n";
+			for (int i = 0; i < InfiExpresion.getInfixExpresion()->size(); i++) {
+				cout << "[ " << InfiExpresion.getInfixExpresion()->at(i) << " ] ";
+			}
+
+			cout << "\n\n\n\nVerificando Validez de la Expresion Ingresada........\n";
+			if (InfiExpresion.isValid())
+				cout << "\nLa Expresion Ingresada: ES VALIDA.\n";
+			else
+				cout << "\nLa Expresion Ingresada: NO ES VALIDA!!!\n";
+
+			if (InfiExpresion.isValid()) {
+				cout << "\n\n\nConvirtiendo la Expresion Ingresada a Expresion Postfija........\n";
+				cout << "\n\nEvaluando la Expresion Ingresada........";
+
+				PostFixManager PostfixExpresion(InfiExpresion.getInfixExpresion());
+				vector<string>* postfixAux = PostfixExpresion.getPostfixExpresion();
+
+				cout << "\n\n\n\nExpresion en formato Posfijo:\n\n";
+				for (int i = 0; i < postfixAux->size(); i++) {
+					cout << "[ " << postfixAux->at(i) << " ] ";
+				}
+
+				string resultado = "\nEl resultado de la expresion : " + expresion + " es igual a : " + PostfixExpresion.getResult();
+				cout << "\n\n" << resultado;
+				historial.push_back(resultado);
+			}
+
+			break;
+
+		}case 4:{
+			cout << "\n\n********* H I S T O R I A L  E X P R E S I O N E S *********\n";
+
+			if (historial.empty())
+				cout << "\n\nLista Vacia!!";
+			else {
+				for (int i = 0; i < historial.size(); i++) {
+					cout << "\n" << historial[i];
+				}
+			}
+
+			break;
+
+		}case 5: {
+			cout << "\n\n********* P R U E B A S  U N I T A R I A S *********\n";
+
+			pruebas tester;
+			string expresiones[10][2];
+
+			expresiones[0][0] = "2+4*pi+5";
+			expresiones[0][1] = "19.566399";
+
+			expresiones[1][0] = "10+(1+2)*2";
+			expresiones[1][1] = "16";
+
+			expresiones[2][0] = "5+5";
+			expresiones[2][1] = "10";
+
+			expresiones[3][0] = "10+12*24";
+			expresiones[3][1] = "298";
+
+			expresiones[4][0] = "5-(6*(5+4))/2";
+			expresiones[4][1] = "-22";
+
+			expresiones[5][0] = "4/0";
+			expresiones[5][1] = "0";
+
+			expresiones[6][0] = "*7+83";
+			expresiones[6][1] = "0";
+
+			expresiones[7][0] = "56-8*(10-4)/";
+			expresiones[7][1] = "0";
+
+			expresiones[8][0] = "(13+873";
+			expresiones[8][1] = "0";
+
+			expresiones[9][0] = "332+89)";
+			expresiones[9][1] = "0";
+
+			for (int i = 0; i < 10; i++) {
+				if (tester.prueba_unitaria(expresiones[i][0], expresiones[i][1])) {
+					cout << "\n\nLa Expresion: " << expresiones[i][0] << " SUPERO LA PRUEBA CON EXITO!!!.\n\n\n\n";
+				}
+				else {
+					cout << "\n\nLa Expresion: " << expresiones[i][0] << " NO SUPERO LA PRUEBA CON EXITO!!!.\n\n\n\n";
+				}
+			}
+
+			break;
+
+		}case 6: {
+			cout << "\nSaliendo....\nGRACIAS POR UTILIZAR ESTE EVALUADOR.\n";
+			break;
+		}default: {
+			cout << "\nOPCION NO VALIDA";
+			break;
+		}
+		}
 	}
-
-
-	//Prueba de Pila
-	Stack<int> st;
-
-	st.push(4);
-	st.push(3);
-	st.push(7);
-	st.push(2);
-	st.push(1);
-	st.push(8);
-	st.push(10);
-	st.push(33);
-	st.push(12);
-	st.push(13);
-	st.push(17);
-
-	st.print();
-
-	st.pop();
-	st.pop();
-	st.print();
-
-	Stack<string> st2;
-
-	st2.push("Carlos");
-	st2.push("Maria");
-	st2.push("Esteban");
-	st2.push("Carolina");
-	st2.push("Bernardo");
-
-	st2.print();
-	cout << "\nTope de la Fila: " << st.peek() << "\n";
-
-
-	//Prueba de Operaciones
-	Operaciones operador;
-	int suma = operador.suma(2, 4);
-	cout << "\nLa suma es: " << suma;
-
-	float suma2 = operador.suma(2, 4.5f);
-	cout << "\nLa suma es: " << suma2;
-
-
-
-	//Prueba de Variables
-	VariableManager variables;
-	string a = "a";
-	variables.requestVariable(a);
-	cout << "el valor asignado a la variable fue: " << a;
-
-	auto x = std::any(1);
-	std::cout << "\n";
-    std::cout << x.type().name() << ": " << std::any_cast<int>(x) << '\n';
-    x = 3.14;
-    std::cout << x.type().name() << ": " << std::any_cast<double>(x) << '\n';
-    x = true;
-    std::cout << x.type().name() << ": " << std::any_cast<bool>(x) << '\n';
-	x = string("Hola Mundo");
-	std::cout << x.type().name() << ": " << std::any_cast<string>(x) << '\n';
-	*/
-
-
-	/*vector<string>* expresion = new vector<string>;
-
-	expresion->push_back("/");
-	expresion->push_back("10");
-	expresion->push_back("+");
-	expresion->push_back("45");
-	expresion->push_back("*");
-	expresion->push_back("a");
-	expresion->push_back("%");
-	expresion->push_back("pi");
-	expresion->push_back("/");
-	expresion->push_back("33.4");
-
-	for (int i = 0; i < expresion->size(); i++) {
-		cout << "[ " << expresion->at(i) << " ]\n";
-	}
-
-	Validaciones validador;
-	bool esValid = validador.validarExpresion(expresion);
-
-	if (esValid)
-		cout << "\nLa Expresion SI es Valida.\n";
-	else
-		cout << "\nLa Expresion NO es Valida.\n";*/
-
-	string expresion = "23+783/773*63+pi+a";
-	string expresion2 = "23+783/773*63+";
-	string expresion3 = "+783/773*63+pi";
-
-	auto toString = [](char a) {
-		string s(1, a);
-		return s;
-	};
-
-
-	InfixManager InfiExpresion(expresion);
-	InfixManager InfiExpresion2(expresion2);
-	InfixManager InfiExpresion3(expresion3);
-
-	cout << "\nExpresion 1\n";
-	for (int i = 0; i < InfiExpresion.getInfixExpresion()->size(); i++) {
-		cout << "[ " << InfiExpresion.getInfixExpresion()->at(i) << " ]\n";
-	}
-	cout << "\nExpresion 2\n";
-	for (int i = 0; i < InfiExpresion2.getInfixExpresion()->size(); i++) {
-		cout << "[ " << InfiExpresion2.getInfixExpresion()->at(i) << " ]\n";
-	}
-	cout << "\nExpresion 3\n";
-	for (int i = 0; i < InfiExpresion3.getInfixExpresion()->size(); i++) {
-		cout << "[ " << InfiExpresion3.getInfixExpresion()->at(i) << " ]\n";
-	}
-
-	if (InfiExpresion.isValid())
-		cout << "\nLa Expresion 1 SI es Valida.\n";
-	else
-		cout << "\nLa Expresion 1 NO es Valida.\n";
-
-	if (InfiExpresion2.isValid())
-		cout << "\nLa Expresion 2 SI es Valida.\n";
-	else
-		cout << "\nLa Expresion 2 NO es Valida.\n";
-
-	if (InfiExpresion3.isValid())
-		cout << "\nLa Expresion 3 SI es Valida.\n";
-	else
-		cout << "\nLa Expresion 3 NO es Valida.\n";
-
- 
 	_getch();
 }

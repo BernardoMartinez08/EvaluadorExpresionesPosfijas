@@ -39,6 +39,7 @@ void ConstanteManager::agregarConstante() {
 	Constantes aux(variable, valor);
 	file << aux;
 	file.close();
+	cout << "AGREGADA CON EXITO!!.";
 };
 
 Constantes ConstanteManager::buscarConstante(string _nombreVariable) {

@@ -11,46 +11,53 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
         return false;
     }
 
-    bool esValid = false;
+    bool esValid = true;
+    bool parentesisAbierto = false;
 
     //Feature de C++ V17 Inicializadores dento de sentencias if
     if (bool _valid = esSimbolo(expresion->at(0)); _valid == true) {
-        cout << "\nExpresion No puede comenzar con un simbolo!!!*\n";
-        return false;
+        if (!esParentisisIzq(expresion->at(0))) {
+            cout << "\nExpresion No puede comenzar con un simbolo!!!";
+                return false;
+        }
     }
     //Feature de C++ V17 Inicializadores dento de sentencias if
     else if (bool _valid = esSimbolo(expresion->at(expresion->size() - 1)); _valid == true) {
-        cout << "\nExpresion No puede Finalizar con un simbolo!!!*\n";
-        return false;
+        if (!esParentisisDer(expresion->at(expresion->size() - 1))) {
+            cout << "\nExpresion No puede Finalizar con un simbolo!!!";
+            return false;
+        }
     }
 
     for (int i = 0; i < expresion->size(); i++) {
         //Feature de C++ V17 Inicializadores dento de sentencias if
         if (bool _valid = esFloat(expresion->at(i)); _valid == true) {
-            cout << "\nEs Float*\n";
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esInt(expresion->at(i)); _valid == true) {
-            cout << "\nEs Entero*\n";
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
-        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true) {
-            cout << "\nEs Simbolo*\n";
+        else if (bool _valid = esSimbolo(expresion->at(i)); _valid == true && !esParentisisIzq(expresion->at(0))) {
             esValid = false;
+        }
+        else if (esParentisisIzq(expresion->at(i)) && parentesisAbierto == false) {
+            esValid = false;
+            parentesisAbierto = true;
+        }
+        else if (esParentisisDer(expresion->at(i)) && parentesisAbierto == true) {
+            parentesisAbierto = false;
+            esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esVariable(expresion->at(i)); _valid == true) {
-            cout << "\nEs Variable*\n";
             VariableManager manager;
             manager.requestVariable(expresion->at(i));
             esValid = true;
         }
         //Feature de C++ V17 Inicializadores dento de sentencias if
         else if (bool _valid = esConstante(expresion->at(i)); _valid == true) {
-            cout << "\nEs Constante*\n";
-
             ConstanteManager buscador;
             Constantes constAux = buscador.buscarConstante(expresion->at(i));
 
@@ -60,22 +67,19 @@ bool Validaciones::validarExpresion(vector<string>* expresion) {
             else {
                 expresion->at(i) = to_string(constAux.value);
             }
-
+            cout << "aqui";
             esValid = true;
         }
-        else if (esParentisisIzq(expresion->at(i)) && esValid == true) {
-            cout << "\nEs Parentesis Izquiedo*\n";
+        else {
+            cout << "\nExpresion contiene el formato de parentesis incorrecto!!!*\n";
             esValid = false;
         }
-        else if (esParentisisDer(expresion->at(i)) && esValid == false) {
-            cout << "\nEs Parentesis Izquiedo*\n";
-            esValid = true;
-        }
-        else
-            esValid = false;
     }
 
-    return esValid;
+    if (parentesisAbierto != true)
+        return esValid;
+    else 
+        return false;
 }
 
 bool Validaciones::esFloat(string valor) {
@@ -164,7 +168,7 @@ bool Validaciones::esSimbolo(string valor) {
         valor.erase(valor.begin());
     }
 
-    int ini = valor[0] == '-';
+    int ini = 0;
 
     for (int i = ini; i < valor.size(); i++) {
         if (valor[i] == '*' || valor[i] == '/' || valor[i] == '%' || valor[i] == '^' || valor[i] == '-' || valor[i] == '+' || valor[i] == '(' || valor[i] == ')') {

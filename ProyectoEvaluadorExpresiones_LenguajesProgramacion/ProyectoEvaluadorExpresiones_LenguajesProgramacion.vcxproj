@@ -25,6 +25,7 @@
     <ClInclude Include="InfixManager.h" />
     <ClInclude Include="Operaciones.h" />
     <ClInclude Include="PostFixManager.h" />
+    <ClInclude Include="pruebas.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Validaciones.h" />
     <ClInclude Include="VariableManager.h" />

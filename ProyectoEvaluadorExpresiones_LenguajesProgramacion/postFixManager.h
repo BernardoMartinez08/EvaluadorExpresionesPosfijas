@@ -9,6 +9,8 @@
 #include <math.h>
 #include "Stack.h"
 #include "Validaciones.h"
+#include "Conversiones.h"
+#include "Operaciones.h"
 
 using namespace std;
 /*
@@ -21,9 +23,10 @@ public:
 	vector<string>* getInfixExpresion();
 	vector<string>* getPostfixExpresion();
 
+
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
 	auto getResult() { return this->result; };
-private:
+
 	//Feature de C++ V11 - Designacion de constante a puntero nulo
 	vector<string>* infixExpresion = nullptr;
 	vector<string>* postfixExpresion = nullptr;
@@ -33,5 +36,8 @@ private:
 	void convert();
 	int precedence(string);
 	void evaluate();
+	float operate(auto operando1, auto operando2, string operador);
 };
+
+
 #endif // !POSTFIX_MANAGER_H

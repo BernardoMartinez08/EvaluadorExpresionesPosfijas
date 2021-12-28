@@ -24,13 +24,13 @@ using namespace std;
 class InfixManager {
 public:
 	InfixManager(string);
-	
+
 	string getRootExpresion();
 	vector<string>* getInfixExpresion();
 	
 	//feature C++ V11 - Autodeduccion de Tipos de Datos
 	auto isValid() { return this->valid; };
-private:
+
 	string rootExpresion = " ";
 
 	//Feature de C++ V11 - Designacion de constante a puntero nulo
@@ -40,4 +40,5 @@ private:
 
 	void convert();
 };
+
 #endif // !INFIX_MANAGER_H
