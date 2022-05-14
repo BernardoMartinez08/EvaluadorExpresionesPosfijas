@@ -32,8 +32,8 @@
     <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\ConstantesManager.obj" />
     <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Conversiones.obj" />
     <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\InfixManager.obj" />
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\main.obj" />
     <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\PostFixManager.obj" />
     <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Validaciones.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\VariableManager.obj" />
   </ItemGroup>
 </Project>

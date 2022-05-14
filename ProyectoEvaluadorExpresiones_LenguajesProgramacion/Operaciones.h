@@ -103,7 +103,7 @@ public:
 	//Resta de dos enteros
 	template<typename T, typename T2>
 	auto resta(T x, T2 y) {
-		return rest(x, y);;
+		return rest(x, y);
 	};
 
 

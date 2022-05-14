@@ -177,13 +177,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\constantes.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\ConstantesManager.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Conversiones.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\InfixManager.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\PostFixManager.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Validaciones.obj" />
-    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\VariableManager.obj" />
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\constantes.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\ConstantesManager.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Conversiones.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\InfixManager.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\main.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\PostFixManager.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
+    <Object Include="..\ProyectoEvaluadorExpresiones_LenguajesProgramacion\Debug\Validaciones.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Object>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
